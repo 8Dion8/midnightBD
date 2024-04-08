@@ -1,0 +1,10 @@
+services:
+  midnightbd_back:
+    container_name: midnightbd_back
+    build:
+      context: ./midnightBD_back
+    ports:
+      - 7900:7900
+    volumes:
+      - ./midnightBD_back:/server
+
