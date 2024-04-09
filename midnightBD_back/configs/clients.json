@@ -1,0 +1,70 @@
+{
+    "sqlite_columns": [
+        {
+            "display_name": "Имя Клиента",
+            "sql_name": "client_name",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Номер Телефона",
+            "sql_name": "phone_number",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Другие Контакты",
+            "sql_name": "other_contacts",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Описание Работы",
+            "sql_name": "job_description",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Тип Работы",
+            "sql_name": "job_type",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Модель",
+            "sql_name": "job_model",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Серийник",
+            "sql_name": "serial_number",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Дата Приёма Заказа",
+            "sql_name": "date_of_entry",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Дата Выполнения Заказа",
+            "sql_name": "date_of_finish",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Стоимость Заказа",
+            "sql_name": "job_price",
+            "type": "REAL",
+            "possible_values": []
+        },
+        {
+            "display_name": "Статус Заказа",
+            "sql_name": "status",
+            "type": "TEXT",
+            "possible_values": ["Finished", "In Progress", "Returned", "Received"]
+        }
+    ]
+}
