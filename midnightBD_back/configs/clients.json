@@ -25,20 +25,20 @@
             "possible_values": []
         },
         {
-            "display_name": "Тип Работы",
+            "display_name": "Тип+Модель",
             "sql_name": "job_type",
-            "type": "TEXT",
-            "possible_values": []
-        },
-        {
-            "display_name": "Модель",
-            "sql_name": "job_model",
             "type": "TEXT",
             "possible_values": []
         },
         {
             "display_name": "Серийник",
             "sql_name": "serial_number",
+            "type": "TEXT",
+            "possible_values": []
+        },
+        {
+            "display_name": "Харектеристики",
+            "sql_name": "characteristics",
             "type": "TEXT",
             "possible_values": []
         },
@@ -64,7 +64,7 @@
             "display_name": "Статус Заказа",
             "sql_name": "status",
             "type": "TEXT",
-            "possible_values": ["Finished", "In Progress", "Returned", "Received"]
+            "possible_values": ["Выполнен", "В работе", "Возврат", "Принят"]
         }
     ]
 }

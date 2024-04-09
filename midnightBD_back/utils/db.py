@@ -3,6 +3,7 @@ import json
 import os
 import glob
 from pathlib import Path
+from tqdm import tqdm
 
 class DBHandler:
     def __init__(
@@ -42,6 +43,10 @@ class DBHandler:
         self.cursor = self.conn.cursor()
         print("Connected to db")
 
+    def disconnect_from_db(self):
+        self.conn.commit()
+        self.conn.close()
+
     def create_db_if_not_exists(self):
         if not os.path.exists(self.db_path):
             with open(self.db_path, "w") as f:
@@ -50,10 +55,34 @@ class DBHandler:
     def create_table_if_not_exists(self, table: str):
         self.connect_to_db()
         column_names_and_types = [column["sql_name"] + " " + column["type"] for column in self.config[table]["sqlite_columns"]]
-        query = f"CREATE TABLE IF NOT EXISTS {table} (id INTEGER PRIMARY KEY AUTOINCREMENT, {', '.join(column_names_and_types)})"
-        print(query)
+        query = f"CREATE TABLE IF NOT EXISTS {table} (id INTEGER PRIMARY KEY AUTOINCREMENT, {','.join(column_names_and_types)})"
         self.cursor.execute(query)
+        self.disconnect_from_db()
+
+    def insert_single_row(self, table: str, row):
+        self.connect_to_db()
+
+        column_names = [i["sql_name"] for i in self.config[table]["sqlite_columns"]]
+
+        query = f"INSERT INTO {table} ({','.join(column_names)}) VALUES ({','.join(row)})"
+        self.cursor.execute(query)
+
+        self.disconnect_from_db()
+
+    def get_all_rows(self, table) -> list:
+        self.connect_to_db()
+        query = f"SELECT * FROM {table}"
+
+        self.cursor.execute(query)
+
+        out = self.cursor.fetchall()
+
+        return out
 
 
 if __name__ == "__main__":
     handler = DBHandler()
+
+    print(handler.get_all_rows("clients"))
+        
+
