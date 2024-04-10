@@ -7,4 +7,14 @@ services:
       - 7900:7900
     volumes:
       - ./midnightBD_back:/server
-
+  midnightbd_front:
+    container_name: midnightbd_front
+    build:
+      context: ./midnightBD_front
+    ports:
+      - 7901:7901
+    volumes:
+      - ./midnightBD_front:/front
+    command: npm run dev -- --port 7901 --host 0.0.0.0
+    environment:
+      - PORT=7901
