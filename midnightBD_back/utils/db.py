@@ -83,6 +83,11 @@ class DBHandler:
 if __name__ == "__main__":
     handler = DBHandler()
 
+    with open("utils/tmp.txt", "r") as f:
+        x = f.read()
+        for r in x.split("\\n"):
+            handler.insert_single_row("clients", r.split("\\t"))
+
     print(handler.get_all_rows("clients"))
         
 
