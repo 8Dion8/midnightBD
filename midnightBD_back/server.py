@@ -3,6 +3,8 @@ from flask_cors import CORS
 
 from utils.db import DBHandler
 
+from time import sleep
+
 APP = flask.Flask("server")
 CORS(APP)
 
@@ -22,16 +24,18 @@ def api_ping():
 def api_fetch_data_column_sql_names():
     handler_config = HANDLER.config
     table_config_to_fetch = flask.request.args.get("table")
-
-    if flask.request.args.get("format_for_sql") == "0":
-        data = list(i["sql_name"] for i in handler_config[table_config_to_fetch]["sqlite_columns"])
-
-    else:
-        data = list(
-            {
-                "prop": i["sql_name"],
-                "name": i["display_name"],
-            } for i in handler_config[table_config_to_fetch]["sqlite_columns"])
+    data = list(
+        {
+            "field": i["sql_name"],
+            "header": i["display_name"],
+            "display_type": i["display_type"]
+        } for i in handler_config[table_config_to_fetch]["sqlite_columns"])
+    data.insert(0, 
+        {
+            "field": "id",
+            "header": "ID",
+            "display_type": "monotext"
+        })
 
     return flask.jsonify({"data": data})
         
@@ -40,21 +44,16 @@ def api_fetch_rows_data():
     handler_config = HANDLER.config
     table_config_to_fetch = flask.request.args.get("table")
 
-    if flask.request.args.get("format_for_sql") == "0":
-        pass
-        #TODO
-    else:
-        data = []
-        column_names = list(i["sql_name"] for i in handler_config[table_config_to_fetch]["sqlite_columns"])
-        rows = HANDLER.get_all_rows(table_config_to_fetch)
-        print("@@@@@@@@@@@@@@@@@@@@@@", rows)
+    data = []
+    column_names = list(i["sql_name"] for i in handler_config[table_config_to_fetch]["sqlite_columns"])
+    rows = HANDLER.get_all_rows(table_config_to_fetch)
 
-        for row in rows:
-            tmp_row = {}
-            for column_id, column_name in enumerate(column_names):
-                tmp_row[column_name] = row[column_id]
+    for row in rows:
+        tmp_row = {}
+        for column_id, column_name in enumerate(column_names):
+            tmp_row[column_name] = row[column_id+1]
 
-            data.append(tmp_row)
+        data.append(tmp_row)
 
     return flask.jsonify({"data": data})
 

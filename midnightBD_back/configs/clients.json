@@ -4,66 +4,78 @@
             "display_name": "Имя Клиента",
             "sql_name": "client_name",
             "type": "TEXT",
+            "display_type": "maintext",
             "possible_values": []
+
         },
         {
             "display_name": "Номер Телефона",
             "sql_name": "phone_number",
             "type": "TEXT",
+            "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Другие Контакты",
             "sql_name": "other_contacts",
             "type": "TEXT",
+            "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Описание Работы",
             "sql_name": "job_description",
             "type": "TEXT",
+            "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Тип+Модель",
             "sql_name": "job_type",
             "type": "TEXT",
+            "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Серийник",
             "sql_name": "serial_number",
             "type": "TEXT",
+            "display_type": "monotext",
             "possible_values": []
         },
         {
             "display_name": "Харектеристики",
             "sql_name": "characteristics",
-            "type": "TEXT",
+            "type": "TEXT", 
+            "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Дата Приёма Заказа",
             "sql_name": "date_of_entry",
             "type": "TEXT",
+            "display_type": "date",
             "possible_values": []
         },
         {
             "display_name": "Дата Выполнения Заказа",
             "sql_name": "date_of_finish",
             "type": "TEXT",
+            "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Стоимость Заказа",
             "sql_name": "job_price",
             "type": "REAL",
+            "display_type": "currency",
             "possible_values": []
         },
         {
             "display_name": "Статус Заказа",
             "sql_name": "status",
             "type": "TEXT",
+            "display_type": "tag",
             "possible_values": ["Выполнен", "В работе", "Возврат", "Принят"]
         }
     ]
