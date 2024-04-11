@@ -1,18 +1,21 @@
 <template>
-    <DataTable 
-    :value="data_rows"
-    tableStyle="min-width: 50rem"
-    paginator
-    :rows="10"
-    :rowsPerPageOptions="[5, 10, 20, 50]">
-        <Column 
-        v-for="col of data_columns"
-        :key="col.field"
-        :field="col.field" 
-        :header="col.header"
-        />
+    <div class="card flex">
+        <DataTable 
+        :value="data_rows"
+        tableStyle="min-width: 50rem"
+        paginator
+        :rows="10"
+        :rowsPerPageOptions="[5, 10, 20, 50]">
 
-    </DataTable>
+            <Column 
+            v-for="col of data_columns"
+            :key="col.field"
+            :field="col.field" 
+            :header="col.header"
+            />
+
+        </DataTable>
+    </div>
 </template>
  
 <script>

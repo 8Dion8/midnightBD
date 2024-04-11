@@ -1,5 +1,5 @@
 <template>
-    <div class="mainUI">
+    <div>
         <Header/>
         <Table/>
     </div>

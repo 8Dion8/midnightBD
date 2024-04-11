@@ -1,17 +1,32 @@
 <template>
-    <div class="ui-header__wrapper">
-        <h1 class="ui-header__title">Сервисная БД</h1>    
-        <strong>Logged in as </strong> {{ user }}
+    <div class="card">
+        <Menubar :model="items"/> 
     </div>
 </template>
 
 <script>
+import Menubar from 'primevue/menubar';
+import Card from 'primevue/card';
 
 export default {
     name: "Header",
+    components: {
+        Menubar,
+        Card
+    },
     data() {
         return {
-            user: "dion"
+            user: "dion",
+            items: [
+                {
+                    label: "Заказы",
+                    icon: "pi pi-list-check"
+                },
+                {
+                    label: "Склад",
+                    icon: "pi pi-box"
+                }
+            ]
         }
     } 
 }
@@ -20,9 +35,5 @@ export default {
 
 <style>
 
-.ui-header__wrapper {
-    margin: 2em;
-    height: 20vh;
-}
 
 </style>
