@@ -1,5 +1,5 @@
 <template>
-    <Tag :value=rowData[rowIndexToGet]></Tag>
+    <Tag :value=display_value></Tag>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ import Tag from 'primevue/tag';
 
 export default {
     name: "TagCell",
-    props: ['rowData', 'rowIndexToGet'],
+    props: ['display_value'],
     components: {
         Tag
     }

@@ -10,7 +10,9 @@
         <template v-for="(col, index) in data_columns">
             <Column :field="col.field" :header="col.header">
                 <template #body="slotProps">
-                    <component :is="getComponentType(col.display_type)" :rowData="slotProps.data" :rowIndexToGet="col.field"/>
+                    <component 
+                    :is="getComponentType(col.display_type)" 
+                    :display_value="slotProps.data[col.field]"/>
                 </template>
             </Column>
         </template>
@@ -29,11 +31,14 @@ import Skeleton from 'primevue/skeleton';
 
 import TagCell from './tableCellComponents/TagCell.vue'
 import DefaultCell from './tableCellComponents/DefaultCell.vue'
+import CurrencyCell from './tableCellComponents/CurrencyCell.vue'
+
 
 export default {
     name: "Table",
     data() {
         return {
+            sql_table: "orders_repair"
             data_columns: [],
             data_columns_loaded: false,
             data_rows: [],
@@ -47,7 +52,8 @@ export default {
         Row,
         Skeleton,
         TagCell,
-        DefaultCell
+        DefaultCell,
+        CurrencyCell
     },
 
     mounted() {
@@ -57,7 +63,7 @@ export default {
 
     methods: {
         fetchColumns() {
-            fetch("http://127.0.0.1:7900/fetch/data_column_names?table=clients")
+            fetch("http://127.0.0.1:7900/fetch/data_column_names?table="+sql_table)
                 .then(response => response.json())
                 .then(columnData => {
                     console.log(columnData.data)
@@ -69,7 +75,7 @@ export default {
             })
         },
         fetchRows() {
-            fetch("http://127.0.0.1:7900/fetch/data_rows?table=clients")
+            fetch("http://127.0.0.1:7900/fetch/data_rows?table="+sql_table)
                 .then(response => response.json())
                 .then(rowData => {
                     console.log(rowData.data)
@@ -83,7 +89,8 @@ export default {
 
         getComponentType(type) {
             const typeToComponentMap = {
-                tag: 'TagCell'
+                tag: 'TagCell',
+                currency: 'CurrencyCell'
 
             };
             return typeToComponentMap[type] || 'DefaultCell';

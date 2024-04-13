@@ -1,15 +1,11 @@
 <template>
-    <p>{{ rowData[rowIndexToGet] }}</p>
+    <p>{{ display_value }}</p>
 </template>
 
 <script>
 export default {
     name: "DefaultCell",
-    props: ['rowData', 'rowIndexToGet'],
-    mounted() {
-        console.log(this.rowData)
-        console.log(this.rowIndexToGet)
-    }
+    props: ['display_value'],
 }
 
 </script>
