@@ -38,12 +38,16 @@ export default {
     name: "Table",
     data() {
         return {
-            sql_table: "orders_repair"
             data_columns: [],
             data_columns_loaded: false,
             data_rows: [],
             data_rows_loaded: false,
         };
+    },
+    props: {
+        sql_table: {
+            type: String
+        }
     },
     components: {
         DataTable,
@@ -63,7 +67,7 @@ export default {
 
     methods: {
         fetchColumns() {
-            fetch("http://127.0.0.1:7900/fetch/data_column_names?table="+sql_table)
+            fetch("http://127.0.0.1:7900/fetch/data_column_names?table="+this.sql_table)
                 .then(response => response.json())
                 .then(columnData => {
                     console.log(columnData.data)
@@ -75,7 +79,7 @@ export default {
             })
         },
         fetchRows() {
-            fetch("http://127.0.0.1:7900/fetch/data_rows?table="+sql_table)
+            fetch("http://127.0.0.1:7900/fetch/data_rows?table="+this.sql_table)
                 .then(response => response.json())
                 .then(rowData => {
                     console.log(rowData.data)
@@ -94,8 +98,16 @@ export default {
 
             };
             return typeToComponentMap[type] || 'DefaultCell';
-        }
+        },
 
+    },
+
+    watch: {
+        sql_table(oldTable, newTable) {
+            console.log("watcher", oldTable, newTable)
+            this.fetchColumns()
+            this.fetchRows()
+        }
     }
 
     

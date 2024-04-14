@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Header/>
-        <Table/>
+        <Header :sql_table="sql_table" @switchTable="switchTable"/>
+        <Table  :sql_table="sql_table"/>
     </div>
 </template>
 
@@ -15,6 +15,17 @@ export default {
     components: {
         Header,
         Table
+    },
+    data() {
+        return {
+            sql_table: "clients"
+        }
+    },
+    methods: {
+        switchTable(table) {
+            console.log("switching", table)
+            this.sql_table = table
+        }
     }
 }
 </script>

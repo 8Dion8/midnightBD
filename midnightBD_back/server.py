@@ -36,6 +36,10 @@ def api_fetch_data_column_sql_names():
             "header": "ID",
             "display_type": "monotext"
         })
+    
+    for col in data:
+        if not col["field"]:
+            col["field"] = ''.join(filter(str.isalpha, col["header"]))
 
     return flask.jsonify({"data": data})
         

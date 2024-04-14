@@ -54,7 +54,12 @@ class DBHandler:
 
     def create_table_if_not_exists(self, table: str):
         self.connect_to_db()
-        column_names_and_types = [column["sql_name"] + " " + column["type"] for column in self.config[table]["sqlite_columns"]]
+
+        column_names_and_types = []
+        for column in self.config[table]["sqlite_columns"]:
+            if "type" in column.keys():
+                column_names_and_types.append(" ".join([column["sql_name"], column["type"]]))
+
         query = f"CREATE TABLE IF NOT EXISTS {table} (id INTEGER PRIMARY KEY AUTOINCREMENT, {','.join(column_names_and_types)})"
         self.cursor.execute(query)
         self.disconnect_from_db()

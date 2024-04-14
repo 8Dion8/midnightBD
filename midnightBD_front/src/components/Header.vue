@@ -20,15 +20,32 @@ export default {
             items: [
                 {
                     label: "Заказы",
-                    icon: "pi pi-list-check"
+                    icon: "pi pi-list-check",
+                    command: () => { this.switchTable("orders_repair") }
                 },
                 {
                     label: "Склад",
-                    icon: "pi pi-box"
+                    icon: "pi pi-box",
+                    command: () => { this.switchTable("backstock") }
+                },
+                {
+                    label: "Клиенты",
+                    icon: "pi pi-user",
+                    command: () => { this.switchTable("clients") }
                 }
             ]
         }
-    } 
+    },
+    props: {
+        sql_table: {
+            type: String
+        }
+    },
+    methods: {
+        switchTable(table) {
+            this.$emit("switchTable", table);
+        }
+    }
 }
 
 </script>
