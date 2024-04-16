@@ -61,3 +61,10 @@ def api_fetch_rows_data():
 
     return flask.jsonify({"data": data})
 
+
+@APP.route("/post/single_row", methods = ["POST"])
+def api_post_single_row():
+    table = flask.request.json["table"]
+    row = flask.request.json["row"]
+    HANDLER.insert_single_row(table, row)
+
