@@ -57,7 +57,7 @@ export default {
         Skeleton,
         TagCell,
         DefaultCell,
-        CurrencyCell
+        CurrencyCell,
     },
 
     mounted() {
@@ -115,5 +115,7 @@ export default {
 </script>
 
 <style>
-
+.p-icon-field {
+    margin: 1rem;
+}
 </style>

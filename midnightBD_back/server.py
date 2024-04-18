@@ -5,6 +5,8 @@ from utils.db import DBHandler
 
 from time import sleep
 
+import sys
+
 APP = flask.Flask("server")
 CORS(APP)
 
@@ -49,13 +51,17 @@ def api_fetch_rows_data():
     table_config_to_fetch = flask.request.args.get("table")
 
     data = []
-    column_names = list(i["sql_name"] for i in handler_config[table_config_to_fetch]["sqlite_columns"])
+    column_names = ["id"]
+    for col in handler_config[table_config_to_fetch]["sqlite_columns"]:
+        if col["sql_name"]:
+            column_names.append(col["sql_name"])
     rows = HANDLER.get_all_rows(table_config_to_fetch)
 
     for row in rows:
+        print("##########",row, file=sys.stderr)
         tmp_row = {}
         for column_id, column_name in enumerate(column_names):
-            tmp_row[column_name] = row[column_id+1]
+            tmp_row[column_name] = row[column_id]
 
         data.append(tmp_row)
 
@@ -67,4 +73,5 @@ def api_post_single_row():
     table = flask.request.json["table"]
     row = flask.request.json["row"]
     HANDLER.insert_single_row(table, row)
-
+    
+    return flask.Response("inserted", status=200)

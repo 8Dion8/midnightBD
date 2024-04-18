@@ -4,6 +4,7 @@ import os
 import glob
 from pathlib import Path
 from tqdm import tqdm
+import sys
 
 class DBHandler:
     def __init__(
@@ -66,13 +67,20 @@ class DBHandler:
 
     def insert_single_row(self, table: str, row):
         self.connect_to_db()
+        column_names = []
+        for column in self.config[table]["sqlite_columns"]:
+            if column["sql_name"]:
+                column_names.append(column["sql_name"])
 
-        column_names = [i["sql_name"] for i in self.config[table]["sqlite_columns"]]
-
-        query = f"INSERT INTO {table} ({','.join(column_names)}) VALUES ({','.join(row)})"
+        query = f"""
+        INSERT INTO {table} ({','.join(column_names)}) VALUES ('{"','".join(row)}')
+        """
+        print(query, file=sys.stderr)
         self.cursor.execute(query)
 
         self.disconnect_from_db()
+
+        
 
     def get_all_rows(self, table) -> list:
         self.connect_to_db()
@@ -81,7 +89,7 @@ class DBHandler:
         self.cursor.execute(query)
 
         out = self.cursor.fetchall()
-
+        print(out, file=sys.stderr)
         return out
 
 
