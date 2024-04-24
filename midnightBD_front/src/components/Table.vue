@@ -2,8 +2,9 @@
     <div class="card flex">
         <DataTable 
         :value="data_rows"
-        tableStyle="min-width: 50rem"
+        tableStyle="min-width: 100%"
         paginator
+        showGridLines
         :rows="10"
         :rowsPerPageOptions="[5, 10, 20, 50]"
         v-if="data_columns_loaded">

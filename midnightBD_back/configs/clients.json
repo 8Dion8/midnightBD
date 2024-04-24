@@ -54,5 +54,6 @@
             "display_type": "list",
             "create_sql": false
         }
-    ]
+    ],
+    "table_display_type": "mini"
 }

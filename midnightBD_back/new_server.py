@@ -67,3 +67,9 @@ def api_tables_rows(table):
         row = flask.request.json["row"]
         HANDLER.insert_single_row(table, row)
 
+
+@APP.route("/<table>/config/<property>", methods = ["GET", "PATCH"])
+def api_tables_config_table_display_type(table, property):
+    handler_config = HANDLER.config
+    return flask.jsonify({"data": handler_config[table][property]})
+
