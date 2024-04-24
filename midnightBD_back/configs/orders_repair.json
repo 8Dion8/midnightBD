@@ -1,80 +1,80 @@
 {
-    "sqlite_columns": [
+    "columns": [
         {
             "display_name": "Имя Клиента",
-            "sql_name": "client_name",
-            "type": "TEXT",
+            "internal_name": "client_name",
+            "internal_type": "TEXT",
             "display_type": "maintext",
             "possible_values": []
 
         },
         {
             "display_name": "Номер Телефона",
-            "sql_name": "phone_number",
-            "type": "TEXT",
+            "internal_name": "phone_number",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Другие Контакты",
-            "sql_name": "other_contacts",
-            "type": "TEXT",
+            "internal_name": "other_contacts",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Описание Работы",
-            "sql_name": "job_description",
-            "type": "TEXT",
+            "internal_name": "job_description",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Тип+Модель",
-            "sql_name": "job_type",
-            "type": "TEXT",
+            "internal_name": "job_type",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Серийник",
-            "sql_name": "serial_number",
-            "type": "TEXT",
+            "internal_name": "serial_number",
+            "internal_type": "TEXT",
             "display_type": "monotext",
             "possible_values": []
         },
         {
             "display_name": "Харектеристики",
-            "sql_name": "characteristics",
-            "type": "TEXT", 
+            "internal_name": "characteristics",
+            "internal_type": "TEXT", 
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Дата Приёма Заказа",
-            "sql_name": "date_of_entry",
-            "type": "TEXT",
+            "internal_name": "date_of_entry",
+            "internal_type": "TEXT",
             "display_type": "date",
             "possible_values": []
         },
         {
             "display_name": "Дата Выполнения Заказа",
-            "sql_name": "date_of_finish",
-            "type": "TEXT",
+            "internal_name": "date_of_finish",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Стоимость Заказа",
-            "sql_name": "job_price",
-            "type": "REAL",
+            "internal_name": "job_price",
+            "internal_type": "REAL",
             "display_type": "currency",
             "possible_values": []
         },
         {
             "display_name": "Статус Заказа",
-            "sql_name": "status",
-            "type": "TEXT",
+            "internal_name": "status",
+            "internal_type": "TEXT",
             "display_type": "tag",
             "possible_values": ["Выполнен", "В работе", "Возврат", "Принят"]
         }

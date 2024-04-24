@@ -57,9 +57,9 @@ class DBHandler:
         self.connect_to_db()
 
         column_names_and_types = []
-        for column in self.config[table]["sqlite_columns"]:
-            if "type" in column.keys():
-                column_names_and_types.append(" ".join([column["sql_name"], column["type"]]))
+        for column in self.config[table]["columns"]:
+            if "create_sql" not in column.keys() or column["create_sql"]:
+                column_names_and_types.append(" ".join([column["internal_name"], column["internal_type"]]))
 
         query = f"CREATE TABLE IF NOT EXISTS {table} (id INTEGER PRIMARY KEY AUTOINCREMENT, {','.join(column_names_and_types)})"
         self.cursor.execute(query)
@@ -68,9 +68,9 @@ class DBHandler:
     def insert_single_row(self, table: str, row):
         self.connect_to_db()
         column_names = []
-        for column in self.config[table]["sqlite_columns"]:
-            if column["sql_name"]:
-                column_names.append(column["sql_name"])
+        for column in self.config[table]["columns"]:
+            if "create_sql" not in column.keys() or column["create_sql"]:
+                column_names.append(column["internal_name"])
 
         query = f"""
         INSERT INTO {table} ({','.join(column_names)}) VALUES ('{"','".join(row)}')

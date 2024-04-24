@@ -7,4 +7,4 @@ RUN pip install -r requirements.txt
 
 RUN ls -lah
 
-ENTRYPOINT [ "flask", "--app", "server", "run", "--host=0.0.0.0", "--port=7900"]
+ENTRYPOINT [ "flask", "--app", "new_server", "run", "--host=0.0.0.0", "--port=7900"]

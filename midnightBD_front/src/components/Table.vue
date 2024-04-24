@@ -67,7 +67,7 @@ export default {
 
     methods: {
         fetchColumns() {
-            fetch("http://127.0.0.1:7900/fetch/data_column_names?table="+this.sql_table)
+            fetch(`http://127.0.0.1:7900/${this.sql_table}/columns`)
                 .then(response => response.json())
                 .then(columnData => {
                     console.log(columnData.data)
@@ -79,7 +79,7 @@ export default {
             })
         },
         fetchRows() {
-            fetch("http://127.0.0.1:7900/fetch/data_rows?table="+this.sql_table)
+            fetch(`http://127.0.0.1:7900/${this.sql_table}/rows`)
                 .then(response => response.json())
                 .then(rowData => {
                     console.log(rowData.data)

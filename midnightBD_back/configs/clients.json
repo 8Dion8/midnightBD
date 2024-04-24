@@ -1,56 +1,58 @@
 {
-    "sqlite_columns": [
+    "columns": [
         {
             "display_name": "Имя",
-            "sql_name": "name",
-            "type": "TEXT",
+            "internal_name": "name",
+            "internal_type": "TEXT",
             "display_type": "maintext",
             "possible_values": []
         },
         {
             "display_name": "Номер Телефона",
-            "sql_name": "phone_number",
-            "type": "TEXT",
+            "internal_name": "phone_number",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Телеграм",
-            "sql_name": "telegram_id",
-            "type": "TEXT",
+            "internal_name": "telegram_id",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "ВК",
-            "sql_name": "vk_id",
-            "type": "TEXT",
+            "internal_name": "vk_id",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Авито",
-            "sql_name": "avito_link",
-            "type": "TEXT",
+            "internal_name": "avito_link",
+            "internal_type": "TEXT",
             "display_type": "linktag",
             "possible_values": []
         },
         {
             "display_name": "Ватсапп",
-            "sql_name": "whatsapp_id",
-            "type": "TEXT",
+            "internal_name": "whatsapp_id",
+            "internal_type": "TEXT",
             "display_type": "text",
             "possible_values": []
         },
         {
             "display_name": "Заказы По Ремонту",
-            "sql_name": "",
-            "display_type": "list"
+            "internal_name": "repair_orders",
+            "display_type": "list",
+            "create_sql": false
         },
         {
             "display_name": "Заказы По Сборке",
-            "sql_name": "",
-            "display_type": "list"
+            "internal_name": "build_orders",
+            "display_type": "list",
+            "create_sql": false
         }
     ]
 }

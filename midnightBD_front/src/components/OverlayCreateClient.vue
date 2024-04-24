@@ -37,11 +37,10 @@ export default {
     },
     methods : {
         addClient() {
-            fetch("http://127.0.0.1:7900/post/single_row", {
+            fetch(`http://127.0.0.1:7900/clients/rows`, {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify({
-                    table: "clients",
                     row: [this.inputName, this.inputPhone, this.inputTelegram, this.inputVK, this.inputAvito, this.inputWhatsapp]
                 })
             })
