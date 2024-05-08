@@ -28,7 +28,7 @@ export default {
     data() {
         return {
             inputName: "",
-            inputPhone: "+7",
+            inputPhone: "",
             inputTelegram: "",
             inputVK: "",
             inputAvito: "",
@@ -37,17 +37,20 @@ export default {
     },
     methods : {
         addClient() {
-            fetch(`http://127.0.0.1:7900/clients/rows`, {
+            fetch("http://127.0.0.1:7900/clients/rows", {
                 method: "POST",
-                headers: { "Content-type": "application/json" },
+                headers: {
+                    "Content-type": "application/json",
+                },
                 body: JSON.stringify({
                     row: [this.inputName, this.inputPhone, this.inputTelegram, this.inputVK, this.inputAvito, this.inputWhatsapp]
                 })
             })
             .then((response) => response.json())
             .then((json) => console.log(json))
+            .then(() => window.location.reload())
+            console.log("adding client")
 
-            window.location.reload();
         }
     }
 }

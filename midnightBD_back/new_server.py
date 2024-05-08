@@ -1,5 +1,7 @@
 import flask
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
+
+import logging
 
 from utils.db import DBHandler
 
@@ -8,20 +10,29 @@ from time import sleep
 import sys
 
 APP = flask.Flask("new_server")
-CORS(APP)
+CORS(APP, resources={r"/*": {"origins": "*"}}, allow_headers=["Content-type"])
+debug_root = logging.getLogger('flask_cors')
+debug_root.level = logging.DEBUG
+debug_handler = logging.StreamHandler(sys.stdout)
+debug_handler.setLevel(logging.DEBUG)
+debug_root.addHandler(debug_handler)
+
 
 HANDLER = DBHandler()
 
 @APP.route("/")
+@cross_origin()
 def api_root():
     return "Hello, world!"
 
 @APP.route("/ping")
+@cross_origin()
 def api_ping():
     return {"ping", "pong"}
 
 
 @APP.route("/<table>/columns", methods = ["GET", "POST", "PATCH", "DELETE"])
+@cross_origin()
 def api_tables_columns(table):
     handler_config = HANDLER.config
     if flask.request.method == "GET":
@@ -43,6 +54,7 @@ def api_tables_columns(table):
 
 
 @APP.route("/<table>/rows", methods = ["GET", "POST", "PATCH", "DELETE"])
+@cross_origin()
 def api_tables_rows(table):
     handler_config = HANDLER.config
 
@@ -66,9 +78,11 @@ def api_tables_rows(table):
     elif flask.request.method == "POST":
         row = flask.request.json["row"]
         HANDLER.insert_single_row(table, row)
+        return flask.jsonify(success=True)
 
 
 @APP.route("/<table>/config/<property>", methods = ["GET", "PATCH"])
+@cross_origin()
 def api_tables_config_table_display_type(table, property):
     handler_config = HANDLER.config
     return flask.jsonify({"data": handler_config[table][property]})

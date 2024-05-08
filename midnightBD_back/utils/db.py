@@ -75,7 +75,7 @@ class DBHandler:
         query = f"""
         INSERT INTO {table} ({','.join(column_names)}) VALUES ('{"','".join(row)}')
         """
-        print(query, file=sys.stderr)
+        print("query", query, file=sys.stderr)
         self.cursor.execute(query)
 
         self.disconnect_from_db()
@@ -89,7 +89,7 @@ class DBHandler:
         self.cursor.execute(query)
 
         out = self.cursor.fetchall()
-        print(out, file=sys.stderr)
+        print("all rows", out, file=sys.stderr)
         return out
 
 
