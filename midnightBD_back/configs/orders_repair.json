@@ -1,26 +1,10 @@
 {
     "columns": [
         {
-            "display_name": "Имя Клиента",
-            "internal_name": "client_name",
-            "internal_type": "TEXT",
-            "display_type": "maintext",
-            "possible_values": []
-
-        },
-        {
-            "display_name": "Номер Телефона",
-            "internal_name": "phone_number",
-            "internal_type": "TEXT",
-            "display_type": "text",
-            "possible_values": []
-        },
-        {
-            "display_name": "Другие Контакты",
-            "internal_name": "other_contacts",
-            "internal_type": "TEXT",
-            "display_type": "text",
-            "possible_values": []
+            "display_name": "Клиент",
+            "internal_name": "client",
+            "display_type": "reference",
+            "internal_type": "REAL"
         },
         {
             "display_name": "Описание Работы",
@@ -33,36 +17,31 @@
             "display_name": "Тип+Модель",
             "internal_name": "job_type",
             "internal_type": "TEXT",
-            "display_type": "text",
-            "possible_values": []
+            "display_type": "text"
         },
         {
             "display_name": "Серийник",
             "internal_name": "serial_number",
             "internal_type": "TEXT",
-            "display_type": "monotext",
-            "possible_values": []
+            "display_type": "monotext"
         },
         {
             "display_name": "Харектеристики",
             "internal_name": "characteristics",
             "internal_type": "TEXT", 
-            "display_type": "text",
-            "possible_values": []
+            "display_type": "text"
         },
         {
             "display_name": "Дата Приёма Заказа",
             "internal_name": "date_of_entry",
             "internal_type": "TEXT",
-            "display_type": "date",
-            "possible_values": []
+            "display_type": "date"
         },
         {
             "display_name": "Дата Выполнения Заказа",
             "internal_name": "date_of_finish",
             "internal_type": "TEXT",
-            "display_type": "text",
-            "possible_values": []
+            "display_type": "date"
         },
         {
             "display_name": "Стоимость Заказа",
@@ -78,5 +57,6 @@
             "display_type": "tag",
             "possible_values": ["Выполнен", "В работе", "Возврат", "Принят"]
         }
-    ]
+    ],
+    "table_display_type": "full"
 }

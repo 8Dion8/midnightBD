@@ -5,54 +5,62 @@
             "internal_name": "name",
             "internal_type": "TEXT",
             "display_type": "maintext",
-            "possible_values": []
+            "possible_values": [],
+            "show_in_table": true
         },
         {
             "display_name": "Номер Телефона",
             "internal_name": "phone_number",
             "internal_type": "TEXT",
             "display_type": "text",
-            "possible_values": []
+            "possible_values": [],
+            "show_in_table": true
         },
         {
             "display_name": "Телеграм",
             "internal_name": "telegram_id",
             "internal_type": "TEXT",
             "display_type": "text",
-            "possible_values": []
+            "possible_values": [],
+            "show_in_table": true
         },
         {
             "display_name": "ВК",
             "internal_name": "vk_id",
             "internal_type": "TEXT",
             "display_type": "text",
-            "possible_values": []
+            "possible_values": [],
+            "show_in_table": true
         },
         {
             "display_name": "Авито",
             "internal_name": "avito_link",
             "internal_type": "TEXT",
             "display_type": "linktag",
-            "possible_values": []
+            "possible_values": [],
+            "show_in_table": true
         },
         {
             "display_name": "Ватсапп",
             "internal_name": "whatsapp_id",
             "internal_type": "TEXT",
             "display_type": "text",
-            "possible_values": []
+            "possible_values": [],
+            "show_in_table": true
         },
         {
             "display_name": "Заказы По Ремонту",
             "internal_name": "repair_orders",
-            "display_type": "list",
-            "create_sql": false
+            "display_type": "reference_list",
+            "create_sql": false,
+            "show_in_table": true
         },
         {
             "display_name": "Заказы По Сборке",
             "internal_name": "build_orders",
-            "display_type": "list",
-            "create_sql": false
+            "display_type": "reference_list",
+            "create_sql": false,
+            "show_in_table": true
         }
     ],
     "table_display_type": "mini"

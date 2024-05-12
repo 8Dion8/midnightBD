@@ -3,12 +3,12 @@ import MainUI from "./components/MainUI.vue"
 
 export default {
     name: 'App',
-    components: { MainUI }
+    components: { MainUI },
 }
 </script>
 
 <template>
-    <div id="app__wrapper">
+    <div id="app__wrapper" class="dark">
         <MainUI/>
     </div>
 </template>

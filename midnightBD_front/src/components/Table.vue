@@ -1,10 +1,11 @@
 <template>
-    <div class="card flex">
+    <div class="card maintable">
         <DataTable 
         :value="data_rows"
-        tableStyle="min-width: 100%"
         paginator
         showGridLines
+        v-model:selection="selected_row"
+        selectionMode="single"
         :rows="10"
         :rowsPerPageOptions="[5, 10, 20, 50]"
         v-if="data_columns_loaded">
@@ -20,6 +21,8 @@
             
         </DataTable>
     </div>
+    
+
 </template>
  
 <script>
@@ -43,11 +46,15 @@ export default {
             data_columns_loaded: false,
             data_rows: [],
             data_rows_loaded: false,
+            selected_row: null
         };
     },
     props: {
         sql_table: {
             type: String
+        },
+        selected_row_id: {
+            type: Number
         }
     },
     components: {
@@ -101,13 +108,23 @@ export default {
             return typeToComponentMap[type] || 'DefaultCell';
         },
 
+        switchRowID(id) {
+            this.$emit("switchRowID", id)
+        }
+
     },
 
     watch: {
-        sql_table(oldTable, newTable) {
+        sql_table(newTable, oldTable) {
             console.log("watcher", oldTable, newTable)
             this.fetchColumns()
             this.fetchRows()
+        },
+        selected_row(newRow, oldRow) {
+            if (newRow != null) {
+                console.log(newRow.id)
+                this.switchRowID(newRow.id)
+            }
         }
     }
 
@@ -119,4 +136,5 @@ export default {
 .p-icon-field {
     margin: 1rem;
 }
+
 </style>

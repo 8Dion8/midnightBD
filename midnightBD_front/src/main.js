@@ -1,10 +1,11 @@
-import 'primeicons/primeicons.css';
-import "primeflex/primeflex.css";
-import 'primevue/resources/themes/lara-dark-purple/theme.css'
 import './assets/main.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
+import Aura from './themes/aura';
 
-createApp(App).use(PrimeVue).mount('#app')
+
+const app = createApp(App)
+app.use(PrimeVue, { unstyled: true, pt: Aura })
+app.mount('#app')
