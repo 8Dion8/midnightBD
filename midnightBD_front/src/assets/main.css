@@ -92,7 +92,10 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     background-color: var(--body-bg);
-    font-weight: normal;
+    font-family: "Rubik", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
     color: var(--body-text-color);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
