@@ -59,12 +59,18 @@ def api_tables_rows(table):
     handler_config = HANDLER.config
 
     if flask.request.method == "GET":
+        column_filter = flask.request.args.get("column")
         data = []
         column_names = ["id"]
         for col in handler_config[table]["columns"]:
             if "create_sql" not in col.keys() or col["create_sql"]:
                 column_names.append(col["internal_name"])
-        raw_rows = HANDLER.get_all_rows(table)
+
+        if column_filter:
+            value_filter = flask.request.args.get("filter")
+            raw_rows = HANDLER.get_rows_by_column_filter(table, column_filter, value_filter)
+        else:
+            raw_rows = HANDLER.get_all_rows(table)
 
         for row in raw_rows:
             tmp = {}

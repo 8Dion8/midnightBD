@@ -93,6 +93,16 @@ class DBHandler:
         print("all rows", out, file=sys.stderr)
         return out
 
+    def get_rows_by_column_filter(self, table, column, value_filter) -> list:
+        self.connect_to_db()
+        query = f"SELECT * FROM {table} WHERE {column} == {value_filter}"
+
+        self.cursor.execute(query)
+
+        out = self.cursor.fetchall()
+        print("filtered rows", out, file=sys.stderr)
+        return out
+
 
 if __name__ == "__main__":
     handler = DBHandler()
