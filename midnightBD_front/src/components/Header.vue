@@ -19,14 +19,9 @@ export default {
             user: "dion",
             items: [
                 {
-                    label: "Заказы",
+                    label: "Сборки",
                     icon: "pi pi-list-check",
-                    command: () => { this.switchTable("orders_repair") }
-                },
-                {
-                    label: "Склад",
-                    icon: "pi pi-box",
-                    command: () => { this.switchTable("backstock") }
+                    command: () => { this.switchTable("orders_build") }
                 },
                 {
                     label: "Клиенты",

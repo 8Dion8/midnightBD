@@ -52,8 +52,6 @@ export default {
 </script>
 
 <style>
-table-container, .details-container {
-    padding:
-}
+
 
 </style>

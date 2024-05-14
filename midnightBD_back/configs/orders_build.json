@@ -1,0 +1,91 @@
+{
+    "columns": [
+        {
+            "display_name": "Клиент",
+            "internal_name": "client",
+            "display_type": "reference",
+            "internal_type": "REAL"
+        }, 
+        {
+            "display_name": "Процессор",
+            "internal_name": "cpu",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        }, 
+        {
+            "display_name": "Видеокарта",
+            "internal_name": "gpu",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        }, 
+        {
+            "display_name": "Материнская Плата",
+            "internal_name": "motherboard",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        },
+        {
+            "display_name": "Оперативная Память",
+            "internal_name": "ram",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        },
+        {
+            "display_name": "БП",
+            "internal_name": "psu",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        },
+        {
+            "display_name": "Диски",
+            "internal_name": "hddsdd",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        },
+        {
+            "display_name": "Корпус",
+            "internal_name": "pc_case",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        },
+        {
+            "display_name": "Кулер CPU",
+            "internal_name": "cpu_cooler",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        },
+        {
+            "display_name": "Вертушки",
+            "internal_name": "fans",
+            "display_type": "text",
+            "internal_type": "TEXT"
+        },
+        {
+            "display_name": "Дата Приёма Заказа",
+            "internal_name": "date_of_entry",
+            "internal_type": "TEXT",
+            "display_type": "date"
+        },
+        {
+            "display_name": "Дата Выполнения Заказа",
+            "internal_name": "date_of_finish",
+            "internal_type": "TEXT",
+            "display_type": "date"
+        },
+        {
+            "display_name": "Стоимость Заказа",
+            "internal_name": "job_price",
+            "internal_type": "REAL",
+            "display_type": "currency",
+            "possible_values": []
+        },
+        {
+            "display_name": "Статус Заказа",
+            "internal_name": "status",
+            "internal_type": "TEXT",
+            "display_type": "tag",
+            "possible_values": ["Выполнен", "В работе", "Возврат", "Принят"]
+        }
+    ],
+    "table_display_type": "full"
+}

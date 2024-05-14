@@ -60,8 +60,9 @@ class DBHandler:
         for column in self.config[table]["columns"]:
             if "create_sql" not in column.keys() or column["create_sql"]:
                 column_names_and_types.append(" ".join([column["internal_name"], column["internal_type"]]))
-
+        
         query = f"CREATE TABLE IF NOT EXISTS {table} (id INTEGER PRIMARY KEY AUTOINCREMENT, {','.join(column_names_and_types)})"
+        print(query)
         self.cursor.execute(query)
         self.disconnect_from_db()
 

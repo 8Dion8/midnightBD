@@ -2,10 +2,11 @@
     <div class="card maintable">
         <DataTable 
         :value="data_rows"
-        paginator
         showGridLines
+        scrollable
         v-model:selection="selected_row"
         selectionMode="single"
+        :size="small"
         :rows="10"
         :rowsPerPageOptions="[5, 10, 20, 50]"
         v-if="data_columns_loaded">

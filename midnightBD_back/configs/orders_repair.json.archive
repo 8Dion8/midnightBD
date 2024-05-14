@@ -5,16 +5,15 @@
             "internal_name": "client",
             "display_type": "reference",
             "internal_type": "REAL"
-        },
+        }, 
         {
-            "display_name": "Описание Работы",
-            "internal_name": "job_description",
+            "display_name": "Тип Техники",
+            "internal_name": "job_type",
             "internal_type": "TEXT",
-            "display_type": "text",
-            "possible_values": []
+            "display_type": "text"
         },
         {
-            "display_name": "Тип+Модель",
+            "display_name": "Модель",
             "internal_name": "job_type",
             "internal_type": "TEXT",
             "display_type": "text"
