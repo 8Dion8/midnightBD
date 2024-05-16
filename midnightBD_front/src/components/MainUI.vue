@@ -7,11 +7,11 @@
             <ControlPanel />
         </div>
         <div class="main-container flex flex-row h-full p-1 space-x-6">
-            <div class="table-container w-2/3 h-full">
+            <div class="table-container w-3/4 h-full">
                 <Table :sql_table="sql_table" :selected_row_id="1" @switchRowID="switchRowID" class="h-full"/>
             </div>
-            <div class="details-container w-1/3 h-full">
-                <Details class="h-full"/>
+            <div class="details-container w-1/4 h-full">
+                <Details class="h-full" :selected_row_id="selected_row_id" :sql_table="sql_table"/>
             </div>
         </div>
     </div>
