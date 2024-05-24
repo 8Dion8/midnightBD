@@ -11,12 +11,13 @@ import sys
 
 APP = flask.Flask("new_server")
 CORS(APP, resources={r"/*": {"origins": "*"}}, allow_headers=["Content-type"])
+'''
 debug_root = logging.getLogger('flask_cors')
 debug_root.level = logging.DEBUG
 debug_handler = logging.StreamHandler(sys.stdout)
 debug_handler.setLevel(logging.DEBUG)
 debug_root.addHandler(debug_handler)
-
+'''
 
 HANDLER = DBHandler()
 
@@ -85,6 +86,11 @@ def api_tables_rows(table):
         row = flask.request.json["row"]
         HANDLER.insert_single_row(table, row)
         return flask.jsonify(success=True)
+    
+    elif flask.request.method == "PATCH":
+        data = flask.request.json["data"]
+        HANDLER.modify_row(table, data)
+        return flask.jsonify(success=True)
 
 
 @APP.route("/<table>/config/<property>", methods = ["GET", "PATCH"])
@@ -92,4 +98,5 @@ def api_tables_rows(table):
 def api_tables_config_table_display_type(table, property):
     handler_config = HANDLER.config
     return flask.jsonify({"data": handler_config[table][property]})
+
 

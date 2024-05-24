@@ -91,6 +91,7 @@ class DBHandler:
 
         out = self.cursor.fetchall()
         print("all rows", out, file=sys.stderr)
+        self.disconnect_from_db()
         return out
 
     def get_rows_by_column_filter(self, table, column, value_filter) -> list:
@@ -101,7 +102,25 @@ class DBHandler:
 
         out = self.cursor.fetchall()
         print("filtered rows", out, file=sys.stderr)
+        self.disconnect_from_db()
         return out
+
+    
+    def modify_row(self, table, new_data):
+        self.connect_to_db()
+        data_to_query = []
+        for key, val in new_data.items():
+            if key != "id":
+                data_to_query.append(f"{key} = '{val}'")
+                
+        query = f"UPDATE {table} SET {','.join(data_to_query)} WHERE id = {new_data['id']}"
+        
+        print(query, file=sys.stderr)
+
+        self.cursor.execute(query)
+        
+        self.disconnect_from_db()
+
 
 
 if __name__ == "__main__":

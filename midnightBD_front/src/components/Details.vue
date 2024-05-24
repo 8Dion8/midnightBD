@@ -1,6 +1,6 @@
 <template>
     <div class="card details-container">
-        <h2>{{ this.data.name }}</h2>
+        <h1 class="font-bold text-2xl">{{ this.data.name }}</h1>
     </div>
 </template>
 
