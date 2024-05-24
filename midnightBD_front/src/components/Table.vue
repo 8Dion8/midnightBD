@@ -20,7 +20,7 @@
             <component
               :is="getComponentType(col.display_type)"
               :display_value="slotProps.data[col.field]"
-            />
+            ></component>
           </template>
           <template #editor="{ data, field }">
             <InputText v-model="data[field]" />

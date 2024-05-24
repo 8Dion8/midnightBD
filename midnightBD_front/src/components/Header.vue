@@ -1,51 +1,51 @@
 <template>
-    <div class="card">
-        <Menubar :model="items"/> 
-    </div>
+  <div class="card">
+    <Menubar :model="items" />
+  </div>
 </template>
 
 <script>
-import Menubar from 'primevue/menubar';
-import Card from 'primevue/card';
+import Menubar from "primevue/menubar";
+import Card from "primevue/card";
 
 export default {
-    name: "Header",
-    components: {
-        Menubar,
-        Card
+  name: "Header",
+  components: {
+    Menubar,
+    Card,
+  },
+  data() {
+    return {
+      user: "dion",
+      items: [
+        {
+          label: "Сборки",
+          icon: "pi pi-list-check",
+          command: () => {
+            this.switchTable("orders_build");
+          },
+        },
+        {
+          label: "Клиенты",
+          icon: "pi pi-user",
+          command: () => {
+            this.switchTable("clients");
+          },
+        },
+      ],
+    };
+  },
+  props: {
+    sql_table: {
+      type: String,
     },
-    data() {
-        return {
-            user: "dion",
-            items: [
-                {
-                    label: "Сборки",
-                    icon: "pi pi-list-check",
-                    command: () => { this.switchTable("orders_build") }
-                },
-                {
-                    label: "Клиенты",
-                    icon: "pi pi-user",
-                    command: () => { this.switchTable("clients") }
-                }
-            ]
-        }
+  },
+  methods: {
+    switchTable(table) {
+      this.$emit("switchTable", table);
     },
-    props: {
-        sql_table: {
-            type: String
-        }
-    },
-    methods: {
-        switchTable(table) {
-            this.$emit("switchTable", table);
-        }
-    }
-}
-
+  },
+};
 </script>
 
-<style>
-
-
-</style>
+<style></style>
