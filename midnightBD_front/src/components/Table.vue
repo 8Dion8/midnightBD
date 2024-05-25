@@ -10,7 +10,7 @@
       v-model:editingRows="editingRows"
       editMode="row"
       @row-edit-save="onRowEditSave"
-      :size="small"
+      :size="'small'"
       :rows="10"
       :rowsPerPageOptions="[5, 10, 20, 50]"
       v-if="data_columns_loaded"
