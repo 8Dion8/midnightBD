@@ -4,6 +4,7 @@
       :value="data_rows"
       showGridLines
       scrollable
+      scroll-height="flex"
       v-model:selection="selected_row"
       selectionMode="single"
       v-model:editingRows="editingRows"

@@ -1,21 +1,24 @@
 <template>
-  <div class="h-svh">
-    <div class="header-container p-1">
-      <Header :sql_table="sql_table" @switchTable="switchTable" />
+  <div class="main-container flex flex-row h-screen p-1 space-x-6">
+    <div class="table-container w-3/4 h-full">
+      <Table
+        :sql_table="sql_table"
+        :selected_row_id="1"
+        @switchRowID="switchRowID"
+        class="h-full"
+      />
     </div>
-    <div class="controls-container p-1">
-      <ControlPanel />
-    </div>
-    <div class="main-container flex flex-row h-max p-1 space-x-6">
-      <div class="table-container w-3/4 h-full">
-        <Table
-          :sql_table="sql_table"
-          :selected_row_id="1"
-          @switchRowID="switchRowID"
-          class="h-full"
-        />
+
+    <div class="sidepanel-container flex flex-col w-1/4">
+      <div class="header-container">
+        <Header :sql_table="sql_table" @switchTable="switchTable" />
       </div>
-      <div class="details-container w-1/4 h-max">
+
+      <div class="controls-container flex justify-center w-full">
+        <ControlPanel />
+      </div>
+
+      <div class="details-container h-full">
         <Details
           class="h-full"
           :selected_row_id="selected_row_id"

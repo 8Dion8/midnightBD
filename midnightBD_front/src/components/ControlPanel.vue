@@ -1,16 +1,16 @@
 <template>
-  <div class="card">
+  <div class="card w-full flex">
     <Button
       label="Новый Клиент"
       @click="client_overlay_visible = true"
-      class="mx-3"
+      class="mx-3 grow"
     />
     <OverlayCreateClient v-model:visible="client_overlay_visible" />
 
     <Button
       label="Новая Сборка"
       @click="build_overlay_visible = true"
-      class="mx-3"
+      class="mx-3 grow"
     />
     <OverlayCreateBuild v-model:visible="build_overlay_visible" />
   </div>
