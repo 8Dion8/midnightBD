@@ -1,5 +1,5 @@
 <template>
-  <div class="main-container flex flex-row h-screen p-1 space-x-6">
+  <div class="main-container flex flex-row h-[97vh] p-1 m-4 space-x-6">
     <div class="table-container w-3/4 h-full">
       <Table
         :sql_table="sql_table"
