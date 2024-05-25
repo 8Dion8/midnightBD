@@ -1,12 +1,24 @@
 <template>
-  <div class="card details-container">
+  <div class="card details-container space-y-4">
     <h1 class="font-bold text-2xl">{{ this.data.name }}</h1>
+    <div class="contact container flex flex-row justify-left space-x-4">
+      <ContactIcon v-if="this.data.phone_number" :iconName="'pi-phone'" />
+      <ContactIcon v-if="this.data.telegram_id" :iconName="'pi-telegram'" />
+      <ContactIcon v-if="this.data.vk_id" :iconName="'pi-comment'" />
+      <ContactIcon v-if="this.data.avito_link" :iconName="'pi-shopping-cart'" />
+      <ContactIcon v-if="this.data.whatsapp_id" :iconName="'pi-whatsapp'" />
+    </div>
   </div>
 </template>
 
 <script>
+import ContactIcon from "./ContactIcon.vue";
+
 export default {
   name: "Details",
+  components: {
+    ContactIcon,
+  },
 
   data() {
     return {
