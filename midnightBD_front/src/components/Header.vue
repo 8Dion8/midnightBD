@@ -1,6 +1,8 @@
 <template>
   <div class="card">
-    <Menubar :model="items" />
+    <div class="flex flex-row space-x-4">
+      <Menubar :model="items" class="grow h-min" />
+    </div>
   </div>
 </template>
 

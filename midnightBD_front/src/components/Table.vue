@@ -44,6 +44,7 @@ import InputText from "primevue/inputtext";
 import TagCell from "./tableCellComponents/TagCell.vue";
 import DefaultCell from "./tableCellComponents/DefaultCell.vue";
 import CurrencyCell from "./tableCellComponents/CurrencyCell.vue";
+import CPUCell from "./tableCellComponents/CPUCell.vue";
 
 export default {
   name: "Table",
@@ -75,6 +76,7 @@ export default {
     TagCell,
     DefaultCell,
     CurrencyCell,
+    CPUCell,
   },
 
   mounted() {
@@ -112,6 +114,7 @@ export default {
       const typeToComponentMap = {
         tag: "TagCell",
         currency: "CurrencyCell",
+        cpu: "CPUCell",
       };
       return typeToComponentMap[type] || "DefaultCell";
     },

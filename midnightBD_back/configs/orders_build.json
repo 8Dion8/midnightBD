@@ -9,55 +9,55 @@
         {
             "display_name": "Процессор",
             "internal_name": "cpu",
-            "display_type": "text",
+            "display_type": "cpu",
             "internal_type": "TEXT"
         }, 
         {
             "display_name": "Видеокарта",
             "internal_name": "gpu",
-            "display_type": "text",
+            "display_type": "gpu",
             "internal_type": "TEXT"
         }, 
         {
             "display_name": "Материнская Плата",
             "internal_name": "motherboard",
-            "display_type": "text",
+            "display_type": "motherboard",
             "internal_type": "TEXT"
         },
         {
             "display_name": "Оперативная Память",
             "internal_name": "ram",
-            "display_type": "text",
+            "display_type": "ram",
             "internal_type": "TEXT"
         },
         {
             "display_name": "БП",
             "internal_name": "psu",
-            "display_type": "text",
+            "display_type": "psu",
             "internal_type": "TEXT"
         },
         {
             "display_name": "Диски",
             "internal_name": "hddsdd",
-            "display_type": "text",
+            "display_type": "hddssd",
             "internal_type": "TEXT"
         },
         {
             "display_name": "Корпус",
             "internal_name": "pc_case",
-            "display_type": "text",
+            "display_type": "pccase",
             "internal_type": "TEXT"
         },
         {
             "display_name": "Кулер CPU",
             "internal_name": "cpu_cooler",
-            "display_type": "text",
+            "display_type": "cooler",
             "internal_type": "TEXT"
         },
         {
             "display_name": "Вертушки",
             "internal_name": "fans",
-            "display_type": "text",
+            "display_type": "fans",
             "internal_type": "TEXT"
         },
         {
