@@ -30,6 +30,26 @@
       </template>
       <Column :rowEditor="true"></Column>
     </DataTable>
+    <div v-else>
+      <Skeleton class="w-full my-6" height="4rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+      <Skeleton class="w-full my-6" height="2rem" />
+    </div>
   </div>
 </template>
 
@@ -86,6 +106,7 @@ export default {
 
   methods: {
     fetchColumns() {
+      this.data_columns_loaded = false;
       fetch(`http://127.0.0.1:7900/${this.sql_table}/columns`)
         .then((response) => response.json())
         .then((columnData) => {
@@ -98,6 +119,7 @@ export default {
         });
     },
     fetchRows() {
+      this.data_rows_loaded = false;
       fetch(`http://127.0.0.1:7900/${this.sql_table}/rows`)
         .then((response) => response.json())
         .then((rowData) => {
