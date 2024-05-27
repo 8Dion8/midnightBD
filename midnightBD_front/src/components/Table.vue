@@ -65,6 +65,7 @@ import TagCell from "./tableCellComponents/TagCell.vue";
 import DefaultCell from "./tableCellComponents/DefaultCell.vue";
 import CurrencyCell from "./tableCellComponents/CurrencyCell.vue";
 import CPUCell from "./tableCellComponents/CPUCell.vue";
+import GPUCell from "./tableCellComponents/GPUCell.vue";
 
 export default {
   name: "Table",
@@ -97,6 +98,7 @@ export default {
     DefaultCell,
     CurrencyCell,
     CPUCell,
+    GPUCell,
   },
 
   mounted() {
@@ -137,6 +139,7 @@ export default {
         tag: "TagCell",
         currency: "CurrencyCell",
         cpu: "CPUCell",
+        gpu: "GPUCell",
       };
       return typeToComponentMap[type] || "DefaultCell";
     },
