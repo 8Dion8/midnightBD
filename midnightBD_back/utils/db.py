@@ -40,7 +40,7 @@ class DBHandler:
                     print(f"Loaded {table_name} config")
 
     def connect_to_db(self):
-        self.conn = sql.connect(self.db_path)
+        self.conn = sql.connect(self.db_path, check_same_thread=False)
         self.cursor = self.conn.cursor()
         print("Connected to db")
 

@@ -1,11 +1,20 @@
 <template>
   <Dialog modal header="Новый Заказ" :style="{ width: '30rem' }">
-    <div class="input-container">
-      <inputInfo
-        @updateInput="inputClientID = $event"
-        :iconClass="'pi pi-user'"
-        :placeholder="'Клиент'"
-      />
+    <div class="input-container space-y-1">
+      <AutoComplete
+        v-model="inputClient"
+        :suggestions="filteredClientList"
+        @complete="searchClients"
+        optionLabel="name"
+        class="w-max"
+      >
+        <template #option="slotProps">
+          <div class="flex align-options-center">
+            {{ slotProps.option.name }}
+            {{ slotProps.option.id }}
+          </div>
+        </template>
+      </AutoComplete>
 
       <div class="gpu-input-container">
         <Dropdown
@@ -22,9 +31,9 @@
       </div>
 
       <inputInfo
-        @updateInput="inputGPU = $event"
+        @updateInput="inputCPU = $event"
         :iconClass="'pi pi-user'"
-        :placeholder="'Видеокарта'"
+        :placeholder="'Процессор'"
       />
       <inputInfo
         @updateInput="inputMotherboard = $event"
@@ -104,6 +113,7 @@ export default {
   },
   data() {
     return {
+      inputClient: "",
       inputClientID: "",
       inputCPU: "",
       inputGPUBrand: "",
@@ -125,13 +135,15 @@ export default {
         { name: "Nvidia", code: "nvidia" },
       ],
 
+      clientList: [],
+      filteredClientList: [],
+
       autocompleteTemp: [],
       autocompleteGPU: [],
     };
   },
   mounted() {
-    console.log("AAAAAAAAAA");
-    console.log(this.autocompleteGPU);
+    this.getClientAutocomplete();
   },
   methods: {
     addOrder() {
@@ -164,10 +176,22 @@ export default {
         .then(() => window.location.reload());
       console.log("adding client");
     },
+    getClientAutocomplete() {
+      fetch(`http://127.0.0.1:7900/tables/clients/rows`)
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data.data);
+          this.clientList = data.data;
+        })
+        .catch((error) => {
+          console.error("Error fetching autocomplete data:", error);
+        });
+    },
     getAutoComplete(component, brand) {
       fetch(`http://127.0.0.1:7900/known/${component}/${brand}`)
         .then((response) => response.json())
         .then((data) => {
+          console.log("gpu auto");
           console.log(data.data);
           this.autocompleteGPU = data.data;
         })
@@ -186,6 +210,19 @@ export default {
         });
       }
     },
+    searchClients(event) {
+      this.filteredClientList = [];
+      if (!event.query.trim().length) {
+        this.filteredClientList = [...this.clientList];
+      } else {
+        for (const client of this.clientList) {
+          if (client.name.toLowerCase().includes(event.query.toLowerCase())) {
+            this.filteredClientList.push(client);
+          }
+        }
+      }
+      console.log(this.filteredClientList);
+    },
   },
   watch: {
     inputGPUBrand(selected, _) {
@@ -194,6 +231,12 @@ export default {
         this.getAutoComplete("gpu", "amd");
       } else if (selected.code == "nvidia") {
         this.getAutoComplete("gpu", "nvidia");
+      }
+    },
+    inputClient(client, _) {
+      console.log("client id", client.id);
+      if (client.id) {
+        this.inputClientID = client.id.toString();
       }
     },
   },
