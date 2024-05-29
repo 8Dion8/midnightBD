@@ -31,7 +31,7 @@ export default {
     fetch_data() {
       if (this.sql_table == "clients") {
         fetch(
-          `http://127.0.0.1:7900/clients/rows?column=id&filter=${this.selected_row_id}`
+          `http://127.0.0.1:7900/tables/clients/rows?column=id&filter=${this.selected_row_id}`
         )
           .then((response) => response.json())
           .then((rowData) => {
@@ -44,7 +44,7 @@ export default {
           });
       } else {
         fetch(
-          `http://127.0.0.1:7900/${this.sql_table}/rows?column=id&filter=${this.selected_row_id}`
+          `http://127.0.0.1:7900/tables/${this.sql_table}/rows?column=id&filter=${this.selected_row_id}`
         )
           .then((response) => response.json())
           .then((rowData) => {
@@ -52,7 +52,7 @@ export default {
             let client_id = rowData.data[0].client;
             console.log(client_id);
             fetch(
-              `http://127.0.0.1:7900/clients/rows?column=id&filter=${client_id}`
+              `http://127.0.0.1:7900/tables/clients/rows?column=id&filter=${client_id}`
             )
               .then((response) => response.json())
               .then((rowData) => {

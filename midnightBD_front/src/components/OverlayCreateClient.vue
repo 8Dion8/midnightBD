@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     addClient() {
-      fetch("http://127.0.0.1:7900/clients/rows", {
+      fetch("http://127.0.0.1:7900/tables/clients/rows", {
         method: "POST",
         headers: {
           "Content-type": "application/json",

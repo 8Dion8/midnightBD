@@ -4,6 +4,7 @@ from flask_cors import CORS, cross_origin
 import logging
 
 from utils.db import DBHandler
+from utils.known import KnownComponentHandler
 
 from time import sleep
 
@@ -20,6 +21,7 @@ debug_root.addHandler(debug_handler)
 '''
 
 HANDLER = DBHandler()
+KNOWNHANDLER = KnownComponentHandler()
 
 @APP.route("/")
 @cross_origin()
@@ -32,7 +34,7 @@ def api_ping():
     return {"ping", "pong"}
 
 
-@APP.route("/<table>/columns", methods = ["GET", "POST", "PATCH", "DELETE"])
+@APP.route("/tables/<table>/columns", methods = ["GET", "POST", "PATCH", "DELETE"])
 @cross_origin()
 def api_tables_columns(table):
     handler_config = HANDLER.config
@@ -54,7 +56,7 @@ def api_tables_columns(table):
         return flask.jsonify({"data": data})
 
 
-@APP.route("/<table>/rows", methods = ["GET", "POST", "PATCH", "DELETE"])
+@APP.route("/tables/<table>/rows", methods = ["GET", "POST", "PATCH", "DELETE"])
 @cross_origin()
 def api_tables_rows(table):
     handler_config = HANDLER.config
@@ -91,9 +93,16 @@ def api_tables_rows(table):
         data = flask.request.json["data"]
         HANDLER.modify_row(table, data)
         return flask.jsonify(success=True)
+    
+@APP.route("/known/<component>/<brand>", methods = ["GET"])
+@cross_origin()
+def api_known_component(component, brand):
+    return flask.jsonify({
+        'data': KNOWNHANDLER.getKnown(component, brand)
+    })
 
 
-@APP.route("/<table>/config/<property>", methods = ["GET", "PATCH"])
+@APP.route("/tables/<table>/config/<property>", methods = ["GET", "PATCH"])
 @cross_origin()
 def api_tables_config_table_display_type(table, property):
     handler_config = HANDLER.config

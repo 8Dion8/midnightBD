@@ -2,7 +2,6 @@
   <div class="card maintable">
     <DataTable
       :value="data_rows"
-      showGridLines
       scrollable
       scroll-height="flex"
       v-model:selection="selected_row"
@@ -13,10 +12,16 @@
       :size="'small'"
       :rows="10"
       :rowsPerPageOptions="[5, 10, 20, 50]"
+      :rowStyle="rowHeight"
       v-if="data_columns_loaded"
     >
       <template v-for="(col, index) in data_columns">
-        <Column :field="col.field" :header="col.header" class="text-sm">
+        <Column
+          :field="col.field"
+          :header="col.header"
+          class="text-sm"
+          :headerStyle="{ height: '4rem' }"
+        >
           <template #body="slotProps">
             <component
               :is="getComponentType(col.display_type)"
@@ -109,7 +114,7 @@ export default {
   methods: {
     fetchColumns() {
       this.data_columns_loaded = false;
-      fetch(`http://127.0.0.1:7900/${this.sql_table}/columns`)
+      fetch(`http://127.0.0.1:7900/tables/${this.sql_table}/columns`)
         .then((response) => response.json())
         .then((columnData) => {
           console.log(columnData.data);
@@ -122,7 +127,7 @@ export default {
     },
     fetchRows() {
       this.data_rows_loaded = false;
-      fetch(`http://127.0.0.1:7900/${this.sql_table}/rows`)
+      fetch(`http://127.0.0.1:7900/tables/${this.sql_table}/rows`)
         .then((response) => response.json())
         .then((rowData) => {
           console.log(rowData.data);
@@ -151,7 +156,7 @@ export default {
     onRowEditSave(event) {
       let { newData, index } = event;
       console.log(newData);
-      fetch(`http://127.0.0.1:7900/${this.sql_table}/rows`, {
+      fetch(`http://127.0.0.1:7900/tables/${this.sql_table}/rows`, {
         method: "PATCH",
         headers: {
           "Content-type": "application/json",
@@ -163,6 +168,9 @@ export default {
         .then((response) => response.json())
         .then((json) => console.log(json))
         .then(() => window.location.reload());
+    },
+    rowHeight() {
+      return { height: "3rem", "max-height": "3rem" };
     },
   },
 
