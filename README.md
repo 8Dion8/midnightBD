@@ -1,3 +1,86 @@
 # midnightBD
 Software for managing a PC Building service: clients, orders, builds, repairs, stock and more
 ![Screenshot 2024-05-27 at 12-53-49 Vite App](https://github.com/8Dion8/midnightBD/assets/62215043/fa1857da-97e8-419c-9da8-2dc03be58d10)
+
+# Roadmap
+- [ ] Basics
+  - [x] Docker+compose containerization
+  - [ ] Backend
+    - [ ] Database handler
+      - [x] Config parsing
+      - [x] Table creation
+      - [x] Table querying all rows
+      - [x] Table querying rows by filter
+      - [x] Modifying rows
+      - [ ] Deleting rows
+      - [ ] Modifying config
+    - [ ] Known handler
+      - [x] List of known CPUs
+      - [x] List of known GPUs
+      - [ ] Other known
+      - [x] Grabbing all known
+    - [ ] Flask API
+      	- [ ] `/tables/<table>/columns`
+    		- [x] GET: return columns
+    		- [ ] POST: add column
+    		- [ ] PATCH: edit column (allow only name?)
+    		- [ ] DELETE: delete column
+    	- [ ] `/tables/<table>/rows`
+    		- [x] GET: return rows
+    		- [x] POST: add row(s)
+    		- [x] PATCH: edit row info
+    		- [ ] DELETE: delete row
+    	- [ ] `/tables/<table>/config`
+    		- [ ] `/tables/<table>/config/<property>`
+    			- [x] GET: get property
+    			- [ ] PATCH: edit property
+    	- [x] `/known/<component>/<brand>`
+        	- [x] GET
+  - [ ] Frontend
+    - [x] Basic table display
+    - [x] dynamic table switching
+    - [ ] Mini tables for backstock
+    - [x] Sidebar display
+    - [x] New client dialogue
+    - [x] New build dialogue
+    - [ ] New stock dialogue
+    - [x] Row selection
+    - [x] Row editing
+- [ ] V1.0
+  - [ ] Special displays for each column type
+    - [ ] text
+  	- [ ] monotext
+  	- [ ] date
+  	- [ ] currency
+  	- [ ] tag
+  	- [ ] maintext
+  	- [ ] linktag
+  	- [ ] reference_list
+  	- [ ] reference
+  	- [x] CPU
+    	- [ ] Socket, cores/threads, clock
+  	- [x] GPU
+    	- [ ] PCIe, clock, memory
+  	- [ ] RAM
+    	- [ ] DDR, clock, XMP/Expo, xNum
+  	- [ ] Motherboard
+    	- [ ] Socket, feats, capabilities
+  	- [ ] PSU
+    	- [ ] connectors, power rating, efficiency
+  	- [ ] HDDSSD
+    	- [ ] Size, speed
+  	- [ ] PCCase
+  	- [ ] Cooler
+  	- [ ] Fans
+ - [ ] Specific editing components for each column type (requires either a move away from unified table component or heavier configuration options)
+ - [ ] More table functionality
+   - [ ] Filters
+   - [ ] Search
+   - [ ] Sort
+ - [ ] Sidebar functionality
+   - [ ] More detailed contact info
+   - [ ] Show orders/builds of client
+   - [ ] ???
+ - [ ] Settings
+   - [ ] Config editing
+   - [ ] ???
