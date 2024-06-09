@@ -1,12 +1,12 @@
 <template>
-  <p v-if="modelType == 'intel'" class="text-intelblue">
+  <div v-if="modelType == 'intel'" class="text-intelblue min-w-16">
     <!--<img src="../icons/INTEL.svg" alt="Intel Icon" class="size-4" />-->
     {{ strToDisplay }}
-  </p>
-  <p v-else-if="modelType == 'amd'" class="text-amdred">
+  </div>
+  <div v-else-if="modelType == 'amd'" class="text-amdred min-w-16">
     <!--<img src="../icons/AMD.svg" alt="AMD Icon" />-->
     R{{ strToDisplay }}
-  </p>
+  </div>
 </template>
 
 <script>
@@ -39,6 +39,9 @@ export default {
     display_value(newVal, oldVal) {
       this.setModelType();
     },
+  },
+  mounted() {
+    this.setModelType();
   },
 };
 </script>

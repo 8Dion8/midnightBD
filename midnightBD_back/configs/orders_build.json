@@ -84,7 +84,7 @@
             "internal_name": "status",
             "internal_type": "TEXT",
             "display_type": "tag",
-            "possible_values": ["Выполнен", "В работе", "Возврат", "Принят"]
+            "possible_values": ["Выполнен", "Готов к сборке", "В ожидании железа", "Возврат", "Принят"]
         }
     ],
     "table_display_type": "full"

@@ -7,6 +7,7 @@ from faker import Faker
 fake = Faker('ru_RU')
 handler = DBHandler()
 
+
 def generate_fake_client_data(num_records):
     data = []
     for _ in range(num_records):
@@ -20,6 +21,8 @@ def generate_fake_client_data(num_records):
         # Ensure at least one contact method is filled
         if not (telegram_id or vk_id or avito_link or whatsapp):
             telegram_id = f"@{fake.user_name()}"
+            
+        rating = str(random.choices([1, 2, 3, 4, 5], weights=[0.1, 0.2, 0.3, 0.4, 0.5])[0])
 
         data.append({
             "Name": name, 
@@ -27,7 +30,9 @@ def generate_fake_client_data(num_records):
             "Telegram ID": telegram_id, 
             "VK ID": vk_id, 
             "Avito Link": avito_link, 
-            "WhatsApp": whatsapp
+            "WhatsApp": whatsapp,
+            "Rating": rating,
+            "Notes": ""
         })
     return data
 
@@ -46,7 +51,7 @@ def generate_fake_build_data(num):
     data = []
     
     for _ in range(num):
-        client = str(random.randint(1,64))
+        client = str(random.randint(1,32))
         cpu = random.choice(cpus)
         gpu = random.choice(gpus)
         motherboard = random.choice(motherboards)
@@ -68,13 +73,13 @@ def generate_fake_build_data(num):
     
     
 
-fake_data = generate_fake_client_data(64)
+fake_data = generate_fake_client_data(32)
 for record in fake_data:
     print(record)
     print(record.values())
     handler.insert_single_row('clients', list(record.values()))
     
-fake_data = generate_fake_build_data(128)
+fake_data = generate_fake_build_data(64)
 for record in fake_data:
     print(record)
     handler.insert_single_row('orders_build', record)

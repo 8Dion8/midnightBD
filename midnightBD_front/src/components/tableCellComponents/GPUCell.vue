@@ -1,9 +1,9 @@
 <template>
-  <p v-if="modelType == 'nvidia'" class="text-nvidiagreen">
+  <p v-if="modelType == 'nvidia'" class="text-nvidiagreen min-w-16">
     <!--<img src="../icons/INTEL.svg" alt="Intel Icon" class="size-4" />-->
     {{ strToDisplay }}
   </p>
-  <p v-else-if="modelType == 'amd'" class="text-amdred">
+  <p v-else-if="modelType == 'amd'" class="text-amdred min-w-16">
     <!--<img src="../icons/AMD.svg" alt="AMD Icon" />-->
     {{ strToDisplay }}
   </p>
@@ -40,12 +40,15 @@ export default {
       this.setModelType();
     },
   },
+  mounted() {
+    this.setModelType();
+  },
 };
 </script>
 
 <style>
 .text-nvidiagreen {
-  color: #76B900;
+  color: #76b900;
 }
 .text-amdred {
   color: #ed1c24;

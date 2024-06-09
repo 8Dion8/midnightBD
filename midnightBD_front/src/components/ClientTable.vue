@@ -15,31 +15,94 @@
       :rowStyle="rowHeight"
       v-if="data_columns_loaded"
     >
-      <template v-for="(col, i) in data_columns">
-        <Column
-          :field="col.field"
-          :header="col.header"
-          class="text-sm"
-          :headerStyle="{ height: '4rem' }"
-        >
-          <template #body="slotProps">
-            <component
-              :is="getComponentType(col.display_type)"
-              :display_value="slotProps.data[col.field]"
-            ></component>
-          </template>
-          <template #editor="{ data, field }">
-            <component
-              :is="getComponentEditorType(col.display_type)"
-              :data="data"
-              :field="field"
-              :table="sql_table"
-              :column_index="i"
-              class="w-min"
-            ></component>
-          </template>
-        </Column>
-      </template>
+      <Column
+        :field="'id'"
+        :header="'ID'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.id"></DefaultCell>
+      </Column>
+      <Column
+        :field="'name'"
+        :header="'Имя'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.name"></DefaultCell>
+      </Column>
+      <Column
+        :field="'phone_number'"
+        :header="'Телефон'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.phone_number"></DefaultCell>
+      </Column>
+      <Column
+        :field="'telegram_id'"
+        :header="'Telegram'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.telegram_id"></DefaultCell>
+      </Column>
+      <Column
+        :field="'vk_id'"
+        :header="'ВК'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.vk_id"></DefaultCell>
+      </Column>
+      <Column
+        :field="'avito_link'"
+        :header="'Avito'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.avito_link"></DefaultCell>
+      </Column>
+      <Column
+        :field="'whatsapp_id'"
+        :header="'Whatsapp'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.whatsapp_id"></DefaultCell>
+      </Column>
+      <Column
+        :field="'orders'"
+        :header="'Заказы'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.orders"></DefaultCell>
+      </Column>
+      <Column
+        :field="'purchases'"
+        :header="'Покупки'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.purchases"></DefaultCell>
+      </Column>
+      <Column
+        :field="'rating'"
+        :header="'Рейтинг'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.rating"></DefaultCell>
+      </Column>
+      <Column
+        :field="'notes'"
+        :header="'Примечания'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.notes"></DefaultCell>
+      </Column>
       <Column :rowEditor="true"></Column>
     </DataTable>
     <div v-else>
@@ -126,7 +189,7 @@ export default {
   methods: {
     fetchColumns() {
       this.data_columns_loaded = false;
-      fetch(`http://127.0.0.1:7900/tables/${this.sql_table}/columns`)
+      fetch(`http://127.0.0.1:7900/tables/clients/columns`)
         .then((response) => response.json())
         .then((columnData) => {
           console.log(columnData.data);
@@ -139,7 +202,7 @@ export default {
     },
     fetchRows() {
       this.data_rows_loaded = false;
-      fetch(`http://127.0.0.1:7900/tables/${this.sql_table}/rows`)
+      fetch(`http://127.0.0.1:7900/tables/clients/rows`)
         .then((response) => response.json())
         .then((rowData) => {
           console.log(rowData.data);

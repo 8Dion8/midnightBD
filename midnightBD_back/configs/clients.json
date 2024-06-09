@@ -49,17 +49,33 @@
             "show_in_table": true
         },
         {
-            "display_name": "Заказы По Ремонту",
-            "internal_name": "repair_orders",
+            "display_name": "Заказы",
+            "internal_name": "orders",
             "display_type": "reference_list",
             "create_sql": false,
             "show_in_table": true
         },
         {
-            "display_name": "Заказы По Сборке",
-            "internal_name": "build_orders",
+            "display_name": "Покупки",
+            "internal_name": "purchases",
             "display_type": "reference_list",
             "create_sql": false,
+            "show_in_table": true
+        },
+        {
+            "display_name": "Рейтинг",
+            "internal_name": "rating",
+            "internal_type": "REAL",
+            "display_type": "rating",
+            "create_sql": true,
+            "show_in_table": true
+        },
+        {
+            "display_name": "Примечания",
+            "internal_name": "notes",
+            "internal_type": "TEXT",
+            "display_type": "longtext",
+            "create_sql": true,
             "show_in_table": true
         }
     ],

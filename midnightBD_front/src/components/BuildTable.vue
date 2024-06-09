@@ -15,31 +15,125 @@
       :rowStyle="rowHeight"
       v-if="data_columns_loaded"
     >
-      <template v-for="(col, i) in data_columns">
-        <Column
-          :field="col.field"
-          :header="col.header"
-          class="text-sm"
-          :headerStyle="{ height: '4rem' }"
-        >
-          <template #body="slotProps">
-            <component
-              :is="getComponentType(col.display_type)"
-              :display_value="slotProps.data[col.field]"
-            ></component>
-          </template>
-          <template #editor="{ data, field }">
-            <component
-              :is="getComponentEditorType(col.display_type)"
-              :data="data"
-              :field="field"
-              :table="sql_table"
-              :column_index="i"
-              class="w-min"
-            ></component>
-          </template>
-        </Column>
-      </template>
+      <Column
+        :field="'id'"
+        :header="'ID'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.id"></DefaultCell>
+      </Column>
+      <Column
+        :field="'client'"
+        :header="'Клиент'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.client"></DefaultCell>
+      </Column>
+      <Column
+        :field="'cpu'"
+        :header="'CPU'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <template #body="slotProps">
+          <CPUCell :display_value="slotProps.data.cpu"></CPUCell>
+        </template>
+      </Column>
+      <Column
+        :field="'gpu'"
+        :header="'GPU'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <template #body="slotProps">
+          <GPUCell :display_value="slotProps.data.gpu"></GPUCell>
+        </template>
+      </Column>
+      <Column
+        :field="'motherboard'"
+        :header="'Материнская плата'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.motherboard"></DefaultCell>
+      </Column>
+      <Column
+        :field="'ram'"
+        :header="'Оперативная Память'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.ram"></DefaultCell>
+      </Column>
+      <Column
+        :field="'psu'"
+        :header="'Блок питания'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.psu"></DefaultCell>
+      </Column>
+      <Column
+        :field="'pc_case'"
+        :header="'Корпус'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.pc_case"></DefaultCell>
+      </Column>
+      <Column
+        :field="'cpu_cooler'"
+        :header="'Кулер'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.cpu_cooler"></DefaultCell>
+      </Column>
+      <Column
+        :field="'fans'"
+        :header="'Вертушки'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.fans"></DefaultCell>
+      </Column>
+      <Column
+        :field="'date_of_entry'"
+        :header="'Дата Приёма Заказа'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.date_of_entry"></DefaultCell>
+      </Column>
+      <Column
+        :field="'date_of_finish'"
+        :header="'Дата Выполнения Заказа'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <DefaultCell :display_value="row.date_of_finish"></DefaultCell>
+      </Column>
+      <Column
+        :field="'job_price'"
+        :header="'Стоимость Заказа'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <CurrencyCell :display_value="row.job_price"></CurrencyCell>
+      </Column>
+      <Column
+        :field="'status'"
+        :header="'Статус Заказа'"
+        class="text-sm"
+        :headerStyle="{ height: '4rem' }"
+      >
+        <template #body="slotProps">
+          <TagCell :display_value="slotProps.data.status"></TagCell>
+        </template>
+      </Column>
+
       <Column :rowEditor="true"></Column>
     </DataTable>
     <div v-else>
@@ -126,7 +220,7 @@ export default {
   methods: {
     fetchColumns() {
       this.data_columns_loaded = false;
-      fetch(`http://127.0.0.1:7900/tables/${this.sql_table}/columns`)
+      fetch(`http://127.0.0.1:7900/tables/orders_build/columns`)
         .then((response) => response.json())
         .then((columnData) => {
           console.log(columnData.data);
@@ -139,7 +233,7 @@ export default {
     },
     fetchRows() {
       this.data_rows_loaded = false;
-      fetch(`http://127.0.0.1:7900/tables/${this.sql_table}/rows`)
+      fetch(`http://127.0.0.1:7900/tables/orders_build/rows`)
         .then((response) => response.json())
         .then((rowData) => {
           console.log(rowData.data);
