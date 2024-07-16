@@ -23,6 +23,7 @@
       >
         <DefaultCell :display_value="row.id"></DefaultCell>
       </Column>
+
       <Column
         :field="'name'"
         :header="'Имя'"
@@ -31,6 +32,7 @@
       >
         <DefaultCell :display_value="row.name"></DefaultCell>
       </Column>
+
       <Column
         :field="'phone_number'"
         :header="'Телефон'"
@@ -39,6 +41,7 @@
       >
         <DefaultCell :display_value="row.phone_number"></DefaultCell>
       </Column>
+
       <Column
         :field="'telegram_id'"
         :header="'Telegram'"
@@ -47,6 +50,7 @@
       >
         <DefaultCell :display_value="row.telegram_id"></DefaultCell>
       </Column>
+
       <Column
         :field="'vk_id'"
         :header="'ВК'"
@@ -55,6 +59,7 @@
       >
         <DefaultCell :display_value="row.vk_id"></DefaultCell>
       </Column>
+
       <Column
         :field="'avito_link'"
         :header="'Avito'"
@@ -63,6 +68,7 @@
       >
         <DefaultCell :display_value="row.avito_link"></DefaultCell>
       </Column>
+
       <Column
         :field="'whatsapp_id'"
         :header="'Whatsapp'"
@@ -71,6 +77,7 @@
       >
         <DefaultCell :display_value="row.whatsapp_id"></DefaultCell>
       </Column>
+
       <Column
         :field="'orders'"
         :header="'Заказы'"
@@ -79,6 +86,7 @@
       >
         <DefaultCell :display_value="row.orders"></DefaultCell>
       </Column>
+
       <Column
         :field="'purchases'"
         :header="'Покупки'"
@@ -87,14 +95,25 @@
       >
         <DefaultCell :display_value="row.purchases"></DefaultCell>
       </Column>
+
       <Column
         :field="'rating'"
         :header="'Рейтинг'"
         class="text-sm"
         :headerStyle="{ height: '4rem' }"
       >
-        <DefaultCell :display_value="row.rating"></DefaultCell>
+        <template #body="slotProps">
+          <RatingCell :display_value="slotProps.data.rating"></RatingCell>
+        </template>
+
+        <template #editor="slotProps">
+          <RatingEditor
+            :display_value="slotProps.data.rating"
+            @update_row="updateRow"
+          ></RatingEditor>
+        </template>
       </Column>
+
       <Column
         :field="'notes'"
         :header="'Примечания'"
@@ -103,6 +122,7 @@
       >
         <DefaultCell :display_value="row.notes"></DefaultCell>
       </Column>
+
       <Column :rowEditor="true"></Column>
     </DataTable>
     <div v-else>
@@ -141,12 +161,14 @@ import DefaultCell from "./tableCellComponents/DefaultCell.vue";
 import CurrencyCell from "./tableCellComponents/CurrencyCell.vue";
 import CPUCell from "./tableCellComponents/CPUCell.vue";
 import GPUCell from "./tableCellComponents/GPUCell.vue";
+import RatingCell from "./tableCellComponents/RatingCell.vue";
 
 import DefaultEditor from "./tableCellEditors/DefaultEditor.vue";
 import TagEditor from "./tableCellEditors/TagEditor.vue";
+import RatingEditor from "./tableCellEditors/RatingEditor.vue";
 
 export default {
-  name: "Table",
+  name: "ClientTable",
   data() {
     return {
       data_columns: [],
@@ -179,6 +201,8 @@ export default {
     GPUCell,
     DefaultEditor,
     TagEditor,
+    RatingCell,
+    RatingEditor,
   },
 
   mounted() {
@@ -220,6 +244,7 @@ export default {
         currency: "CurrencyCell",
         cpu: "CPUCell",
         gpu: "GPUCell",
+        rating: "RatingCell",
       };
       return typeToComponentMap[type] || "DefaultCell";
     },
@@ -253,6 +278,10 @@ export default {
     },
     rowHeight() {
       return { height: "3rem", "max-height": "3rem" };
+    },
+    updateRow(field, value) {
+      console.log(field, value);
+      console.log("should update", this.selected_row_id);
     },
   },
 
