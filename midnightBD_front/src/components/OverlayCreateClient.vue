@@ -30,6 +30,16 @@
       :iconClass="'pi pi-whatsapp'"
       :placeholder="'Whatsapp'"
     />
+    <inputInfo
+      @updateInput="inputRating = $event"
+      :iconClass="'pi pi-star'"
+      :placeholder="'Рейтинг'"
+    />
+    <inputInfo
+      @updateInput="inputNotes = $event"
+      :iconClass="'pi pi-comment'"
+      :placeholder="'Примечание'"
+    />
 
     <Button label="Добавить клиента" @click="addClient()" />
   </Dialog>
@@ -55,6 +65,8 @@ export default {
       inputVK: "",
       inputAvito: "",
       inputWhatsapp: "",
+      inputRating: "",
+      inputNotes: "",
     };
   },
   methods: {
@@ -72,6 +84,8 @@ export default {
             this.inputVK,
             this.inputAvito,
             this.inputWhatsapp,
+            this.inputRating,
+            this.inputNotes,
           ],
         }),
       })
